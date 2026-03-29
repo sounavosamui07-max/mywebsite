@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master your money and build wealth with expert personal finance tips, budgeting advice, investment strategies, and more.">
+    <meta name="keywords" content="personal finance, budgeting, investing, saving money, wealth building">
+    <title>WealthWise - Master Your Money & Build Wealth</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #10b981;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,58,138,0.9), rgba(59,130,246,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8fafc" width="1200" height="600"/><circle fill="%2310b981" opacity="0.1" cx="200" cy="150" r="100"/><circle fill="%233b82f6" opacity="0.1" cx="1000" cy="400" r="150"/><path fill="%23f59e" opacity="0.05" d="M300 500Q400 450 500 500T700 500"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(16,185,129,0.3);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(16,185,129,0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .post-image {
+            height: 220px;
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        .post-card:hover .post-image::before {
+            left: 100%;
+        }
+
+        .post-content {
+            padding: 2rem;
+        }
+
+        .post-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .post-excerpt {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #059669;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .sidebar h3 {
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .search-form {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .categories {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+
+        .category-link:hover {
+            color: #10b981;
+            padding-left: 1rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .newsletter h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: #10b981;
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #1e3a8a;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">WealthWise</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Best NEET Study Tips for Students</h1>
+            <p>Transform your financial future with proven strategies for saving, budgeting, investing, and creating passive income streams.</p>
+            <a href="#blog" class="cta-button">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section id="blog" class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Blog Posts</h2>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">10 Proven Saving Money Tips That Actually Work</h3>
+                        <p class="post-excerpt">Discover practical strategies to cut expenses without sacrificing your lifestyle. From grocery hacks to subscription audits, these tips will help you save thousands annually.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image" style="background: linear-gradient(45deg, #10b981, #34d399);"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">Budget Planning: The Zero-Based Budget Method</h3>
+                        <p class="post-excerpt">Learn the budgeting system used by millionaires. Every dollar gets a job, and you'll gain complete control over your finances in just 30 minutes a month.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image" style="background: linear-gradient(45deg, #f59e0b, #fbbf24);"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">Investment Basics: Where to Start in 2024</h3>
+                        <p class="post-excerpt">Demystifying investing for beginners. Index funds, ETFs, dividend stocks, and robo-advisors – find the perfect starting point for your wealth-building journey.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image" style="background: linear-gradient(45deg, #8b5cf6, #a78bfa);"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">7 Passive Income Ideas That Generate $1K+/Month</h3>
+                        <p class="post-excerpt">Realistic passive income streams you can start today. From digital products to dividend investing, build income that works while you sleep.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image" style="background: linear-gradient(45deg, #ef4444, #f87171);"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">Credit Cards & Loans: Avoid These 5 Costly Mistakes</h3>
+                        <p class="post-excerpt">The hidden fees and traps that cost Americans billions. Learn how to use debt strategically and avoid the pitfalls that keep people stuck in the debt cycle.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content with Sidebar -->
+    <section class="main-content container">
+        <div class="content">
+            <!-- More content can go here -->
+        </div>
+        <aside class="sidebar">
+            <div class="search-section">
+                <h3>🔍 Search Posts</h3>
+                <form class="search-form">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </
