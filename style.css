@@ -1,0 +1,55 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background: #0a2540;
+  color: white;
+  padding: 15px 20px;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  padding: 50px 20px;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+}
+
+/* Blog Post */
+.post {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.post a {
+  display: inline-block;
+  margin-top: 10px;
+  color: blue;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: #0a2540;
+  color: white;
+}
